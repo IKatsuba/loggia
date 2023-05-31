@@ -23,5 +23,6 @@ export function injectLogLevel(): LogLevel {
 }
 
 export function injectDateTimeFormat(): string {
-  return inject(LOGGER_CONFIG).timestampFormat ?? 'yyyy-MM-dd HH:mm:ss.SSS';
+  // ISO 8601 by default
+  return inject(LOGGER_CONFIG).timestampFormat ?? 'yyyy-MM-ddTHH:mm:ss.SSS';
 }
