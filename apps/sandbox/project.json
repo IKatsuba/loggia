@@ -15,7 +15,15 @@
         "main": "apps/sandbox/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/sandbox/tsconfig.app.json",
-        "assets": ["apps/sandbox/src/favicon.ico", "apps/sandbox/src/assets"],
+        "assets": [
+          "apps/sandbox/src/favicon.ico",
+          "apps/sandbox/src/assets",
+          {
+            "glob": "mockServiceWorker.js",
+            "input": "node_modules/msw/lib",
+            "output": "/"
+          }
+        ],
         "styles": ["apps/sandbox/src/styles.css"],
         "scripts": []
       },
