@@ -1,6 +1,4 @@
 import { Monitor, MONITORS } from './monitor';
-import { LogLevel } from './logger-config';
-import { ConsoleMethod } from './console';
 import { HttpClient } from '@angular/common/http';
 import {
   EnvironmentProviders,
