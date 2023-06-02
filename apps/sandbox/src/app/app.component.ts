@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { injectLogger } from '@loggia/angular';
+import { injectLogger, Logger, LogLevel } from '@loggia/angular';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -12,21 +12,23 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  logger = injectLogger(this.constructor.name);
+  logger = injectLogger(AppComponent.name);
+  otherLogger = inject(Logger);
   http = inject(HttpClient);
 
   constructor() {
-    this.logger.groupCollapsed('Hello World');
-    this.logger.trace('This is a log message');
     this.logger.debug('This is a log message');
+
+    this.logger.logLevel = LogLevel.None;
+
     this.logger.log('This is a log message');
     this.logger.info('This is an info message');
-    this.logger.warn('This is a warn message');
-    this.logger.error('This is an error message');
-    this.logger.groupEnd('Hello World');
 
-    this.http.get('/api/test').subscribe((res) => {
-      //
-    });
+    this.otherLogger.debug('This is a log message');
+
+    this.otherLogger.logLevel = LogLevel.Debug;
+
+    this.otherLogger.log('This is a log message');
+    this.otherLogger.info('This is an info message');
   }
 }
