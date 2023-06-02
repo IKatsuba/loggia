@@ -28,13 +28,31 @@ export class Logger {
   })?.nativeElement.tagName;
   private injector = inject(Injector);
 
-  private logLevel = injectLogLevel();
+  private readonly initialLogLevel = injectLogLevel();
+  private _logLevel = this.initialLogLevel;
   private dateTimeFormat = injectDateTimeFormat();
   private console = inject(CONSOLE);
   private scope: readonly string[] = this.elementName ? [this.elementName] : [];
 
   private monitors: readonly Monitor[] = inject(MONITORS);
   private datePipe = new DatePipe(inject(LOCALE_ID));
+
+  private parentLogger: Logger | null = null;
+
+  get logLevel(): LogLevel {
+    const logger: Logger = this.parent ?? this;
+    return logger._logLevel ?? this.initialLogLevel;
+  }
+
+  set logLevel(value: LogLevel) {
+    const logger: Logger = this.parent ?? this;
+    logger._logLevel = value;
+  }
+
+  private get parent(): Logger {
+    const parentLogger = this.parentLogger;
+    return parentLogger ? parentLogger.parent : this;
+  }
 
   write(
     logLevel: LogLevel,
@@ -133,6 +151,7 @@ export class Logger {
 
     const logger = new Logger();
     logger.scope = [...this.scope, ...(Array.isArray(scope) ? scope : [scope])];
+    logger.parentLogger = this;
 
     setCurrentInjector(prevInjector);
 
