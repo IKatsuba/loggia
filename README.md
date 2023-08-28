@@ -1,4 +1,4 @@
-# @loggia
+# @loggia/angular
 
 Loggia is a simple logging library for Angular 15+.
 
