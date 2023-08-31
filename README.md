@@ -30,6 +30,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loggerInterceptor, LogLevel, provideLogger, provideServerLogger } from '@loggia/angular';
 
+
 bootstrapApplication(AppComponent, [
   provideHttpClient(withInterceptors([loggerInterceptor])),
   provideLogger({
