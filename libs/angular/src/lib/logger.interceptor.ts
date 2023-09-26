@@ -28,9 +28,7 @@ export function loggerInterceptor(
   const logger = injectLogger('LoggerInterceptor');
 
   logger.log(`HTTP Request ${req.method} ${req.url}`, {
-    url: req.url,
-    method: req.method,
-    body: req.body,
+    request: req,
   });
 
   return next(req).pipe(
@@ -41,8 +39,8 @@ export function loggerInterceptor(
         }
 
         logger.log(`HTTP Response ${req.method} ${req.url}`, {
-          status: response.status,
-          body: response.body,
+          request: req,
+          response,
         });
       },
     })
