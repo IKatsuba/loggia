@@ -6,5 +6,6 @@ export interface Log {
   method: ConsoleMethod;
   message: string;
   timestamp: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   extra: any[];
 }
