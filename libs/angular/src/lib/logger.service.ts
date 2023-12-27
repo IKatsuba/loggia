@@ -58,6 +58,7 @@ export class Logger {
     logLevel: LogLevel,
     method: ConsoleMethod,
     message: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...extra: any[]
   ) {
     if (logLevel > this.logLevel) {
@@ -86,30 +87,37 @@ export class Logger {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error(message: string, ...extra: any[]) {
     this.write(LogLevel.Error, 'error', message, ...extra);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   warn(message: string, ...extra: any[]) {
     this.write(LogLevel.Warn, 'warn', message, ...extra);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   info(message: string, ...extra: any[]) {
     this.write(LogLevel.Info, 'info', message, ...extra);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   log(message: string, ...extra: any[]) {
     this.write(LogLevel.Info, 'log', message, ...extra);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   debug(message: string, ...extra: any[]) {
     this.write(LogLevel.Debug, 'debug', message, ...extra);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   trace(message: string, ...extra: any[]) {
     this.write(LogLevel.Trace, 'trace', message, ...extra);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   table(tabularData?: any, properties?: string[], logLevel = LogLevel.Error) {
     this.write(logLevel, 'table', tabularData, properties);
   }
@@ -138,6 +146,7 @@ export class Logger {
     this.write(logLevel, 'time', label);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   timeLog(label: string, extra: any[] = [], logLevel = LogLevel.Error) {
     this.write(logLevel, 'timeLog', label, ...extra);
   }
